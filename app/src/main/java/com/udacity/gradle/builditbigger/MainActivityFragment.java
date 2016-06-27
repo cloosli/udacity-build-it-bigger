@@ -1,13 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.udacity.gradle.jokes.Joker;
 
 
 /**
@@ -23,7 +25,16 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
+        final TextView jokeTextView = (TextView) root.findViewById(R.id.joke);
+        root.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jokeTextView.setText(new Joker().getJoke());
+            }
+        });
+
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
+
         // Create an ad request. Check logcat output for the hashed device ID to
         // get test ads on a physical device. e.g.
         // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
