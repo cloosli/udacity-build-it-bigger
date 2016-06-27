@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,7 +30,11 @@ public class MainActivityFragment extends Fragment {
         root.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 jokeTextView.setText(new Joker().getJoke());
+
+                Intent intent = new Intent(getActivity(), com.loosli.christian.jokedisplay.MainActivity.class);
+                startActivity(intent);
             }
         });
 
