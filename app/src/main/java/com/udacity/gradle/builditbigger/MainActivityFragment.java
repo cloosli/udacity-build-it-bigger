@@ -1,16 +1,13 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.udacity.gradle.jokes.Joker;
 
 
 /**
@@ -25,18 +22,6 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-
-        final TextView jokeTextView = (TextView) root.findViewById(R.id.joke);
-        root.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                jokeTextView.setText(new Joker().getJoke());
-
-                Intent intent = new Intent(getActivity(), com.loosli.christian.jokedisplay.MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
 
