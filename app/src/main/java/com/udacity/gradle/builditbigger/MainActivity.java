@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.loosli.christian.jokedisplay.JokeActivity;
-import com.udacity.gradle.jokes.Joker;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -41,11 +40,15 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void launchJokeActivity(View view){
-        Intent intent = new Intent(this, JokeActivity.class);
-        Joker jokeSource = new Joker();
-        String joke = jokeSource.getJoke();
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
-        startActivity(intent);
+    public void launchJokeActivity(View view) {
+        new EndpointsAsyncTask(new EndpointsAsyncTask.Listener() {
+            @Override
+            public void onJokeLoaded(String joke) {
+                Intent intent = new Intent(MainActivity.this, JokeActivity.class);
+                intent.putExtra(JokeActivity.JOKE_KEY, joke);
+                startActivity(intent);
+            }
+        }).execute();
     }
+
 }
