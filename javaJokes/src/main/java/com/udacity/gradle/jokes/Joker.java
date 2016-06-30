@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Joker {
 
-    final static String[] jokes = new String[]{
+    private final static String[] JOKES = new String[]{
             "What is a programmer's favourite hangout place?\n" +
                     "A: Foo Bar",
             "Q: how many programmers does it take to change a light bulb?\n" +
@@ -33,10 +33,9 @@ public class Joker {
                     "\n" +
                     "Optimist: \"Nah, of course they can!\"",
             "I’ve no home, I haven’t got control, I can’t see any escape. Way past the time I got a new keyboard.\n",
-
     };
 
     public String getJoke() {
-        return jokes[(int) (new Random().nextDouble() * jokes.length)];
+        return JOKES[(int) (new Random().nextDouble() * JOKES.length)];
     }
 }
