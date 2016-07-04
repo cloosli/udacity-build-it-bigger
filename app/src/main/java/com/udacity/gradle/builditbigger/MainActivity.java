@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.loosli.christian.jokedisplay.JokeActivity;
 
@@ -47,6 +48,11 @@ public class MainActivity extends ActionBarActivity {
                 Intent intent = new Intent(MainActivity.this, JokeActivity.class);
                 intent.putExtra(JokeActivity.JOKE_KEY, joke);
                 startActivity(intent);
+            }
+
+            @Override
+            public void onJokeError(Exception e) {
+                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }).execute();
     }
