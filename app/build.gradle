@@ -30,11 +30,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    // Added for unit tests
     testCompile 'junit:junit:4.12'
+    // Added for AdMob
+    freeCompile 'com.google.android.gms:play-services-ads:9.0.2'
+    // general
     compile project(':javaJokes')
     compile project(':jokedisplay')
-    // Added for AdMob
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.google.android.gms:play-services:9.0.2'
     compile project(path: ':backend', configuration: 'android-endpoints')
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.google.android.gms:play-services-ads:9.2.0'
 }
