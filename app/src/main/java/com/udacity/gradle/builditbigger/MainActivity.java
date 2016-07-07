@@ -6,17 +6,26 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.loosli.christian.jokedisplay.JokeActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -42,17 +51,20 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void launchJokeActivity(View view) {
+        progressBar.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask(new EndpointsAsyncTask.Listener() {
             @Override
             public void onJokeLoaded(String joke) {
                 Intent intent = new Intent(MainActivity.this, JokeActivity.class);
                 intent.putExtra(JokeActivity.JOKE_KEY, joke);
                 startActivity(intent);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onJokeError(Exception e) {
                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
         }).execute();
     }
