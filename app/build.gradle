@@ -22,9 +22,11 @@ android {
     productFlavors {
         free {
             applicationId "com.udacity.gradle.builditbigger.free"
+            versionName "1.0-free"
         }
         paid {
             applicationId "com.udacity.gradle.builditbigger.paid"
+            versionName "1.0-paid"
         }
     }
 }
@@ -34,13 +36,12 @@ dependencies {
     // Added for unit tests
     testCompile 'junit:junit:4.12'
     // Added for AdMob
-    freeCompile 'com.google.android.gms:play-services-ads:9.0.2'
+    freeCompile 'com.google.android.gms:play-services:9.0.2'
     // general
     compile project(':javaJokes')
     compile project(':jokedisplay')
     compile project(path: ':backend', configuration: 'android-endpoints')
     compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.google.android.gms:play-services-ads:9.2.0'
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
 }
